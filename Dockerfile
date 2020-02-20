@@ -1,4 +1,4 @@
-FROM osrf/ros:indigo-desktop-full
+FROM osrf/ros:kinetic-desktop-full
 RUN apt-get update && apt-get install -y \
     	python-setuptools \
 	python-rosinstall \
@@ -7,30 +7,31 @@ RUN apt-get update && apt-get install -y \
 	libboost-all-dev \
 	doxygen \
 	libopencv-dev \
-	ros-indigo-vision-opencv \
-	ros-indigo-image-transport-plugins \
-	ros-indigo-cmake-modules \
+	ros-kinetic-vision-opencv \
+	ros-kinetic-image-transport-plugins \
+	ros-kinetic-cmake-modules \
 	python-software-properties \
 	software-properties-common \
 	libpoco-dev \
-	python-matplotlib \
-	python-scipy \
-	python-git \
-	python-pip \
+	python3-matplotlib \
+	python3-scipy \
+	python3-git \
+	python3-pip \
 	libtbb-dev \
 	libblas-dev \
 	liblapack-dev \
 	python-catkin-tools \
 	libv4l-dev \
-	wget
+	wget \
+	autoconf automake 
 
-RUN pip install python-igraph --upgrade
+RUN pip3 install --upgrade pip;  pip3 install python-igraph --upgrade
 ENV KALIBR_WORKSPACE /kalibr_workspace
 
 RUN 	mkdir -p $KALIBR_WORKSPACE/src &&\
 	cd $KALIBR_WORKSPACE &&\
 	catkin init &&\
-	catkin config --extend /opt/ros/indigo &&\
+	catkin config --extend /opt/ros/kinetic &&\
 	catkin config --cmake-args -DCMAKE_BUILD_TYPE=Release
 
 RUN 	cd $KALIBR_WORKSPACE/src &&\
