@@ -10,6 +10,12 @@ Built versions available on Docker Hub https://hub.docker.com/repository/docker/
 docker run -v ~/foo:/foo -it adujardin/ros-kalibr:kinetic
 ```
 
+With display support
+
+```
+docker run -v ~/foo:/foo -e DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -it adujardin/ros-kalibr:kinetic
+```
+
 Example of calibration command :
 
 ```
